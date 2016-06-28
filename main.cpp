@@ -22,31 +22,56 @@ int Right(int index);
 int Parent(int index);
 
 int main() {
-    vector<int> arr = {19, 12, 1, 20, 100, 2, 3, 9, 4, 55, 22, 124, 234, 4325, 0, 11, 278};
-    vector<int> sorted1, sorted2, sorted3;
-    int startTime1, startTime2, startTime3, endTime1, endTime2, endTime3;
-    PrintVector(arr);
 
-    cout << "Insertion Sort" << endl;
-    startTime1 = clock();
-    sorted1 = ALG1(arr);
-    endTime1 = clock();
-    PrintVector(sorted1);
-    cout << "Time: " + to_string(endTime1 - startTime1) << endl;
+    int ns = 1000, nf = 20000, d = 1000, m = 10;
 
-    cout << "Heap Sort" << endl;
-    startTime2 = clock();
-    sorted2 = ALG2(arr);
-    endTime2 = clock();
-    PrintVector(sorted2);
-    cout << "Time: " + to_string(endTime2 - startTime2) << endl;
+    vector<vector<int>> matrix(m, vector<int> (nf));
 
-    cout << "Quick Sort" << endl;
-    startTime3 = clock();
-    sorted3 = ALG3(arr);
-    endTime3 = clock();
-    PrintVector(sorted3);
-    cout << "Time: " + to_string(endTime3 - startTime3) << endl;
+    // Assigns random integers to each cell of a matrix, where matrix[run] is each vector of "nf" random integers.
+    for(int run = 0; run < matrix.size(); run++) {
+        for(int n = 0; n < matrix[run].size(); n++) {
+            matrix[run][n] = rand();
+        }
+    }
+
+    // Specifies the number of elements to run each algorithm with.
+    for(int n = ns; n <= nf; n += d) {
+
+        //cout << to_string(n) + " <= " + to_string(nf) << endl;
+
+        // Specifies which run the program is on.
+        for(int run = 0; run <= matrix.size() - 1; run++) {
+            // Creates temporary vector to run algorithms with.
+            vector<int> arr(matrix[run].begin(), matrix[run].begin() + n);
+            cout << "Run: " + to_string(run) + " Size: " + to_string(n) << endl;
+
+            /*vector<int> arr = {19, 12, 1, 20, 100, 2, 3, 9, 4, 55, 22, 124, 234, 4325, 0, 11, 278};
+            vector<int> sorted1, sorted2, sorted3;
+            int startTime1, startTime2, startTime3, endTime1, endTime2, endTime3;
+            PrintVector(arr);
+
+            cout << "Insertion Sort" << endl;
+            startTime1 = clock();
+            sorted1 = ALG1(arr);
+            endTime1 = clock();
+            PrintVector(sorted1);
+            cout << "Time: " + to_string(endTime1 - startTime1) << endl;
+
+            cout << "Heap Sort" << endl;
+            startTime2 = clock();
+            sorted2 = ALG2(arr);
+            endTime2 = clock();
+            PrintVector(sorted2);
+            cout << "Time: " + to_string(endTime2 - startTime2) << endl;
+
+            cout << "Quick Sort" << endl;
+            startTime3 = clock();
+            sorted3 = ALG3(arr);
+            endTime3 = clock();
+            PrintVector(sorted3);
+            cout << "Time: " + to_string(endTime3 - startTime3) << endl;*/
+        }
+    }
 
     return 0;
 }
